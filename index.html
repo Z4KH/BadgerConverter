@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <meta charset="UTF-8">
+  <title>ZP, KJ, and MGeh's Converter</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> <!-- Add Google Fonts link -->
+ 
+ 
+</head>
+<body>
+  <header>
+    <h1>ZP, KJ, and MGeh's Converter</h1>
+  </header>
+
+
+  <main>
+    <section>
+      <h2>Description</h2>
+      <p>Badger converter to get long course yards times to long course meters and short course yards.</p>
+    </section>
+
+
+    <div class="line"></div>
+
+
+    <section>
+      <h2>Select an event</h2>
+      <br>
+      <label class="custom-selector">
+        <select name="events" id="events" style="width: 800px;">
+        <optgroup label="Freestyle">
+          <option value="50 Free">50 Freestyle</option>
+          <option value="100 Free">100 Freestyle</option>
+          <option value="200 Free">200 Freestyle</option>
+        </optgroup>
+        <optgroup label="Backstroke">
+          <option value="100 Back">100 Backstroke</option>
+          <option value="200 Back">200 Backstroke</option>
+        </optgroup>
+        <optgroup label="Breastroke">
+          <option value="100 Breast">100 Breastroke</option>
+          <option value="200 Breast">200 Breastroke</option>
+        </optgroup>
+        <optgroup label="Butterfly">
+          <option value="100 Fly">100 Butterfly</option>
+          <option value="200 Fly">200 Butterfly</option>
+        </optgroup>
+        <optgroup label="IM">
+            <option value="200 IM">200 IM</option>
+            <option value="400 IM">400 IM</option>
+          </optgroup>
+        </select>
+      <label>
+      <form id="codeForm">
+        <input id="timeInput" placeholder="Input Badger Pool Time">
+        <div class="line"></div>
+      </form>
+      <div id="outer">
+        <div class="inner"><button type="submit" value="Badger" onclick="convert(this.value)">Submit LCY</button></div>
+        <div class="inner"><button type="submit" value="SCY" onclick="convert(this.value)">Submit SCY</button></div>
+        <div class="inner"><button type="submit" value="LCM" onclick="convert(this.value)">Submit LCM</button></div>
+      </div>
+      <br>
+      <h3 id="time1"></h3>
+      <h3 id="time2"></h3>
+      <h3 id="time3"></h3>
+    </section>
+  </main>
+ 
+  <script>
+
+
+    function convert(value){
+      // Initialize time
+      let time = document.getElementById("timeInput").value;
+      const selectEvent = document.getElementById("events");
+      const event = selectEvent.options[selectEvent.selectedIndex].value;
+      const course = value;
+     
+     
+
+
+      // Check if time has minutes
+      if (time.includes(":") === true) {
+        // Convert time to seconds
+        const timeArray = time.split(":");
+        time = parseInt(timeArray[0]) * 60 + parseFloat(timeArray[1]);
+
+
+        // Convert seconds to lcm
+        let lcm_time = 0;
+        let scy_time = 0;
+        let badger_time = 0;
+
+
+        switch(course) {
+          case "Badger":
+            lcm_time = time * 1.11;
+            badger_time = time;
+            switch (event) {
+              case "50 Free":
+                scy_time = lcm_time * 0.870;
+                break;
+              case "100 Free":
+                scy_time = lcm_time * 0.873;
+                break;
+              case "200 Free":
+                scy_time = lcm_time * 0.875;
+                break;
+              case "100 Back":
+                scy_time = lcm_time * 0.855;
+                break;
+              case "200 Back":
+                scy_time = lcm_time * 0.869;
+                break;
+              case "100 Breast":
+                scy_time = lcm_time * 0.866;
+                break;
+              case "200 Breast":
+                scy_time = lcm_time * 0.868;
+                break;
+              case "100 Fly":
+                scy_time = lcm_time * 0.878;
+                break;
+              case "200 Fly":
+                scy_time = lcm_time * 0.876;
+                break;
+              case "200 IM":
+                scy_time = lcm_time * 0.867;
+                break;
+              case "400 IM":
+                scy_time = lcm_time * 0.865;
+                break;
+            }
+            break;
+            
+          case "SCY":
+            scy_time = time;
+            switch (event) {
+              case "50 Free":
+                lcm_time = time / 0.870;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "100 Free":
+                lcm_time = time / 0.873;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 Free":
+                lcm_time = time / 0.875;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "100 Back":
+                lcm_time = time / 0.855;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 Back":
+                lcm_time = time / 0.869;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "100 Breast":
+                lcm_time = time / 0.866;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 Breast":
+                lcm_time = time / 0.868;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "100 Fly":
+                lcm_time = time / 0.878;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 Fly":
+                lcm_time = time / 0.876;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 IM":
+                lcm_time = time / 0.867;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "400 IM":
+                lcm_time = time / 0.865;
+                badger_time = lcm_time / 1.11;
+                break;
+            }
+            break;
+          case "LCM":
+          lcm_time = time;
+          badger_time = time / 1.11;
+            switch(event) {
+              case "50 Free":
+                scy_time = lcm_time * 0.870;
+                break;
+              case "100 Free":
+                scy_time = lcm_time * 0.873;
+                break;
+              case "200 Free":
+                scy_time = lcm_time * 0.875;
+                break;
+              case "100 Back":
+                scy_time = lcm_time * 0.855;
+                break;
+              case "200 Back":
+                scy_time = lcm_time * 0.869;
+                break;
+              case "100 Breast":
+                scy_time = lcm_time * 0.866;
+                break;
+              case "200 Breast":
+                scy_time = lcm_time * 0.868;
+                break;
+              case "100 Fly":
+                scy_time = lcm_time * 0.878;
+                break;
+              case "200 Fly":
+                scy_time = lcm_time * 0.876;
+                break;
+              case "200 IM":
+                scy_time = lcm_time * 0.867;
+                break;
+              case "400 IM":
+                scy_time = lcm_time * 0.865;
+                break;
+            }
+            break;
+         }
+
+         
+
+         // Print LCM
+        if (lcm_time > 60) {
+          let minutes = Math.trunc(lcm_time / 60);
+          let seconds = lcm_time % 60;
+          seconds = seconds.toFixed(2);
+
+          if (seconds < 10)
+          {
+            seconds = "0" + seconds;
+          }
+
+          document.getElementById("time1").innerHTML = "LCM: " + minutes + ":" + seconds;
+        }
+        else {
+          lcm_time = lcm_time.toFixed(2);
+          document.getElementById("time1").innerHTML = "LCM: " + (lcm_time);
+        }
+
+        // Print SCY
+        if (scy_time > 60) {
+          minutes = Math.trunc(scy_time / 60);
+          seconds = scy_time % 60;
+          seconds = seconds.toFixed(2);
+
+          if (seconds < 10) {
+            seconds = "0" + seconds;
+          }
+
+          document.getElementById("time2").innerHTML = "SCY: " + minutes + ":" + seconds;
+        }
+        else {
+          scy_time = scy_time.toFixed(2);
+          document.getElementById("time2").innerHTML = "SCY: " + scy_time;
+        }
+
+        // Print Badger
+        if (badger_time > 60) {
+          minutes = Math.trunc(badger_time / 60);
+          seconds = badger_time % 60;
+          seconds = seconds.toFixed(2);
+
+          if (seconds < 10) {
+            seconds = "0" + seconds;
+          }
+
+          document.getElementById("time3").innerHTML = "Badger: " + minutes + ":" + seconds;
+        }
+        else {
+          badger_time = badger_time.toFixed(2);
+          document.getElementById("time3").innerHTML = "Badger: " + badger_time;
+        }
+
+      }
+
+      else
+      {
+        time = parseFloat(time);
+        lcm_time = 0;
+        scy_time = 0;
+        badger_time = 0;
+
+        // Convert LCM to SCY
+        switch(course){
+          case "Badger":
+            lcm_time = time * 1.11;
+            badger_time = time;
+            switch (event) {
+              case "50 Free":
+                scy_time = lcm_time * 0.870;
+                break;
+              case "100 Free":
+                scy_time = lcm_time * 0.873;
+                break;
+              case "200 Free":
+                scy_time = lcm_time * 0.875;
+                break;
+              case "100 Back":
+                scy_time = lcm_time * 0.855;
+                break;
+              case "200 Back":
+                scy_time = lcm_time * 0.869;
+                break;
+              case "100 Breast":
+                scy_time = lcm_time * 0.866;
+                break;
+              case "200 Breast":
+                scy_time = lcm_time * 0.868;
+                break;
+              case "100 Fly":
+                scy_time = lcm_time * 0.878;
+                break;
+              case "200 Fly":
+                scy_time = lcm_time * 0.876;
+                break;
+              case "200 IM":
+                scy_time = lcm_time * 0.867;
+                break;
+              case "400 IM":
+                scy_time = lcm_time * 0.865;
+                break;
+            }
+            break;
+          case "SCY":
+            scy_time = time;
+            switch (event) {
+              case "50 Free":
+                lcm_time = time / 0.870;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "100 Free":
+                lcm_time = time / 0.873;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 Free":
+                lcm_time = time / 0.875;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "100 Back":
+                lcm_time = time / 0.855;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 Back":
+                lcm_time = time / 0.869;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "100 Breast":
+                lcm_time = time / 0.866;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 Breast":
+                lcm_time = time / 0.868;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "100 Fly":
+                lcm_time = time / 0.878;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 Fly":
+                lcm_time = time / 0.876;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "200 IM":
+                lcm_time = time / 0.867;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "400 IM":
+                lcm_time = time / 0.865;
+                badger_time = lcm_time / 1.11;
+                break;
+            }
+            break;
+          case "LCM":
+          lcm_time = time;
+          badger_time = time / 1.11;
+            switch(event) {
+              case "50 Free":
+                scy_time = lcm_time * 0.870;
+                break;
+              case "100 Free":
+                scy_time = lcm_time * 0.873;
+                break;
+              case "200 Free":
+                scy_time = lcm_time * 0.875;
+                break;
+              case "100 Back":
+                scy_time = lcm_time * 0.855;
+                break;
+              case "200 Back":
+                scy_time = lcm_time * 0.869;
+                break;
+              case "100 Breast":
+                scy_time = lcm_time * 0.866;
+                break;
+              case "200 Breast":
+                scy_time = lcm_time * 0.868;
+                break;
+              case "100 Fly":
+                scy_time = lcm_time * 0.878;
+                break;
+              case "200 Fly":
+                scy_time = lcm_time * 0.876;
+                break;
+              case "200 IM":
+                scy_time = lcm_time * 0.867;
+                break;
+              case "400 IM":
+                scy_time = lcm_time * 0.865;
+                break;
+            }
+            break;
+        }
+
+
+
+        // Print LCM
+        if (lcm_time > 60) {
+          let minutes = Math.trunc(lcm_time / 60);
+          let seconds = lcm_time % 60;
+          seconds = seconds.toFixed(2);
+
+          if (seconds < 10)
+          {
+            seconds = "0" + seconds;
+          }
+
+          document.getElementById("time1").innerHTML = "LCM: " + minutes + ":" + seconds;
+        }
+        else {
+          lcm_time = lcm_time.toFixed(2);
+          document.getElementById("time1").innerHTML = "LCM: " + (lcm_time);
+        }
+
+        // Print SCY
+        if (scy_time > 60) {
+          minutes = Math.trunc(scy_time / 60);
+          seconds = scy_time % 60;
+          seconds = seconds.toFixed(2);
+
+          if (seconds < 10) {
+            seconds = "0" + seconds;
+          }
+
+          document.getElementById("time2").innerHTML = "SCY: " + minutes + ":" + seconds;
+        }
+        else {
+          scy_time = scy_time.toFixed(2);
+          document.getElementById("time2").innerHTML = "SCY: " + scy_time;
+        }
+
+        // Print Badger
+        if (badger_time > 60) {
+          minutes = Math.trunc(badger_time / 60);
+          seconds = badger_time % 60;
+          seconds = seconds.toFixed(2);
+
+          if (seconds < 10) {
+            seconds = "0" + seconds;
+          }
+
+          document.getElementById("time3").innerHTML = "Badger: " + minutes + ":" + seconds;
+        }
+        else {
+          badger_time = badger_time.toFixed(2);
+          document.getElementById("time3").innerHTML = "Badger: " + badger_time;
+        }
+      }
+    }
+  </script>
+
+
+</body>
+</html>
