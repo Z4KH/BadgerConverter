@@ -7,8 +7,8 @@
   <title>Badger Converter</title>
   <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> <!-- Add Google Fonts link -->
-    <link rel="icon" type="image/png" href="img.png">
-    <link rel="apple-touch-icon" href="/img.png">
+  <link rel="icon" type="image/png" href="img.png">
+  <link rel="apple-touch-icon" href="/img.png">
  
 </head>
 <body>
@@ -36,6 +36,7 @@
           <option value="50 Free">50 Freestyle</option>
           <option value="100 Free">100 Freestyle</option>
           <option value="200 Free">200 Freestyle</option>
+          <option value="400 Free">400 Freestyle</option>
         </optgroup>
         <optgroup label="Backstroke">
           <option value="100 Back">100 Backstroke</option>
@@ -111,6 +112,9 @@
               case "200 Free":
                 scy_time = lcm_time * 0.875;
                 break;
+              case "400 Free":
+                scy_time = lcm_time * 0.877;
+                break;
               case "100 Back":
                 scy_time = lcm_time * 0.855;
                 break;
@@ -151,6 +155,10 @@
                 break;
               case "200 Free":
                 lcm_time = time / 0.875;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "400 Free":
+                lcm_time = time / 0.877;
                 badger_time = lcm_time / 1.11;
                 break;
               case "100 Back":
@@ -199,6 +207,9 @@
                 break;
               case "200 Free":
                 scy_time = lcm_time * 0.875;
+                break;
+              case "400 Free":
+                scy_time = lcm_time * 0.877;
                 break;
               case "100 Back":
                 scy_time = lcm_time * 0.855;
@@ -306,6 +317,9 @@
               case "200 Free":
                 scy_time = lcm_time * 0.875;
                 break;
+              case "400 Free":
+                scy_time = lcm_time * 0.877;
+                break;
               case "100 Back":
                 scy_time = lcm_time * 0.855;
                 break;
@@ -345,6 +359,10 @@
                 break;
               case "200 Free":
                 lcm_time = time / 0.875;
+                badger_time = lcm_time / 1.11;
+                break;
+              case "400 Free":
+                lcm_time = time / 0.877;
                 badger_time = lcm_time / 1.11;
                 break;
               case "100 Back":
@@ -393,6 +411,9 @@
                 break;
               case "200 Free":
                 scy_time = lcm_time * 0.875;
+                break;
+              case "400 Free":
+                scy_time = lcm_time * 0.877;
                 break;
               case "100 Back":
                 scy_time = lcm_time * 0.855;
