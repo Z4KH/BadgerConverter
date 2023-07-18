@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <meta charset="UTF-8">
+  <title>ZP, KJ, and MGeh's Converter</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> <!-- Add Google Fonts link -->
+  
+  
+</head>
+<body>
+  <header>
+    <h1>ZP, KJ, and MGeh's Converter</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Description</h2>
+      <p>Badger converter to get long course yards times to long course meters and short course yards.</p>
+    </section>
+
+    <div class="line"></div> 
+
+    <section>
+      <h2>Select an event</h2>
+      <br>
+      <label class="custom-selector">
+        <select name="events" id="events" style="width: 800px;">
+        <optgroup label="Freestyle">
+          <option value="50 Free">50 Freestyle</option>
+          <option value="100 Free">100 Freestyle</option>
+          <option value="200 Free">200 Freestyle</option>
+          <option value="200 Free">200 Freestyle</option>
+          <option value="200 Free">200 Freestyle</option>
+          <option value="200 Free">200 Freestyle</option>
+          <option value="200 Free">200 Freestyle</option>
+          <option value="200 Free">200 Freestyle</option>
+          <option value="200 Free">200 Freestyle</option>
+        </optgroup>
+        <optgroup label="Backstroke">
+          <option value="100 Back">100 Backstroke</option>
+          <option value="200 Back">200 Backstroke</option>
+        </optgroup>
+        <optgroup label="Breastroke">
+          <option value="100 Breast">100 Breastroke</option>
+          <option value="200 Breast">200 Breastroke</option>
+        </optgroup>
+        <optgroup label="Butterfly">
+          <option value="100 Fly">100 Butterfly</option>
+          <option value="200 Fly">200 Butterfly</option>
+        </optgroup>
+        <optgroup label="IM">
+            <option value="200 IM">200 IM</option>
+            <option value="400 IM">400 IM</option>
+          </optgroup>
+        </select>
+      <label>
+      <form id="codeForm">
+        <input id="timeInput" placeholder="Input Badger Pool Time">
+        <div class="line"></div> 
+      </form>
+      <button type="submit" onclick="convert()">Submit</button>
+      <br>
+      <h3 id="LCM"></h3>
+      <h3 id="SCY"></h3>
+    </section>
+  </main>
+  
+  <script>
+    function convert(){
+      // Initialize time
+      let time = document.getElementById("timeInput").value;
+      const selectEvent = document.getElementById("events");
+      const event = selectEvent.options[selectEvent.selectedIndex].value;
+      
+
+      // Check if time has minutes
+      if (time.includes(":") === true)
+      {
+        // Convert time to seconds
+        const timeArray = time.split(":");
+        time = parseInt(timeArray[0]) * 60 + parseFloat(timeArray[1]);
+
+        // Convert seconds to lcm
+        let lcm_time = time * 1.11;
+        let scy_time = 0;
+
+        
+
+        // Convert LCM to SCY
+        switch (event) {
+          case "50 Free":
+            scy_time = lcm_time * 0.870;
+            break;
+          case "100 Free":
+            scy_time = lcm_time * 0.873;
+            break;
+          case "200 Free":
+            scy_time = lcm_time * 0.875;
+            break;
+          case "100 Back":
+            scy_time = lcm_time * 0.855;
+            break;
+          case "200 Back":
+            scy_time = lcm_time * 0.869;
+            break;
+          case "100 Breast":
+            scy_time = lcm_time * 0.866;
+            break;
+          case "200 Breast":
+            scy_time = lcm_time * 0.868;
+            break;
+          case "100 Fly":
+            scy_time = lcm_time * 0.878;
+            break;
+          case "200 Fly":
+            scy_time = lcm_time * 0.876;
+            break;
+          case "200 IM":
+            scy_time = lcm_time * 0.867;
+            break;
+          case "400 IM":
+            scy_time = lcm_time * 0.865;
+            break;
+          default:
+            break;
+        }
+
+        // Convert LCM seconds to time
+        let minutes = Math.trunc(lcm_time / 60);
+        let seconds = lcm_time % 60;
+        seconds = seconds.toFixed(2);
+        
+        if (seconds < 10)
+        {
+          seconds = "0" + seconds;
+        }
+
+        // Print LCM time
+        document.getElementById("LCM").innerHTML = "LCM: " + minutes + ":" + seconds;
+
+        // Print SCY time
+        if (scy_time < 60)
+        {
+          scy_time = scy_time.toFixed(2);
+          document.getElementById("SCY").innerHTML = "SCY: " + scy_time;
+        }
+        else 
+        {
+           minutes = Math.trunc(scy_time / 60);
+           seconds = scy_time % 60;
+           seconds = seconds.toFixed(2);
+
+          if (seconds < 10)
+          {
+            seconds = "0" + seconds;
+          }
+
+          document.getElementById("SCY").innerHTML = "SCY: " + minutes + ":" + seconds;
+        }
+      }
+
+      else
+      {
+        time = parseFloat(time);
+
+        // Convert Badger to LCM
+        let lcm_time = time * 1.11;
+        lcm_time = lcm_time.toFixed(2);
+        let scy_time = 0;
+
+        // Convert LCM to SCY
+        switch (event) {
+          case "50 Free":
+            scy_time = lcm_time * 0.870;
+            break;
+          case "100 Free":
+            scy_time = lcm_time * 0.873;
+            break;
+          case "200 Free":
+            scy_time = lcm_time * 0.875;
+            break;
+          case "100 Back":
+            scy_time = lcm_time * 0.855;
+            break;
+          case "200 Back":
+            scy_time = lcm_time * 0.869;
+            break;
+          case "100 Breast":
+            scy_time = lcm_time * 0.866;
+            break;
+          case "200 Breast":
+            scy_time = lcm_time * 0.868;
+            break;
+          case "100 Fly":
+            scy_time = lcm_time * 0.878;
+            break;
+          case "200 Fly":
+            scy_time = lcm_time * 0.876;
+            break;
+          case "200 IM":
+            scy_time = lcm_time * 0.867;
+            break;
+          case "400 IM":
+            scy_time = lcm_time * 0.865;
+            break;
+          default:
+            break;
+        }
+
+        scy_time = scy_time.toFixed(2);
+
+        // Convert LCM to proper time format
+        if (lcm_time > 60)
+        {
+          minutes = Math.trunc(lcm_time / 60);
+          seconds = lcm_time % 60;
+          seconds = seconds.toFixed(2);
+        
+          if (seconds < 10)
+          {
+            seconds = "0" + seconds;
+          }
+
+          
+          // Print LCM time
+          document.getElementById("LCM").innerHTML = "LCM: " + minutes + ":" + seconds;
+        }
+        // Print LCM if already in proper time format
+        else {
+          document.getElementById("LCM").innerHTML = "LCM: " + lcm_time;
+        }
+
+
+        // Convert SCY to proper time format
+        if (scy_time > 60)
+        {
+          minutes = Math.trunc(scy_time / 60);
+          seconds = scy_time % 60;
+          seconds = seconds.toFixed(2);
+        
+          if (seconds < 10)
+          {
+            seconds = "0" + seconds;
+          }
+
+          
+          // Print SCY time
+          document.getElementById("SCY").innerHTML = "SCY: " + minutes + ":" + seconds;
+        }
+
+        // Prints SCY time if already in proper time format
+        else
+        {
+          document.getElementById("SCY").innerHTML = "SCY: " + scy_time;
+        }
+      }
+
+
+    }
+  </script>
+
+</body>
+</html>
