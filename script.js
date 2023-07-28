@@ -36,17 +36,26 @@ function convert(value) {
           case "400 Free":
             scy_time = lcm_time * 0.877;
             break;
+          case "50 Back":
+            scy_time = lcm_time * 0.852;
+            break;
           case "100 Back":
             scy_time = lcm_time * 0.855;
             break;
           case "200 Back":
             scy_time = lcm_time * 0.869;
             break;
+          case "50 Breast":
+            scy_time = lcm_time * 0.863;
+            break;
           case "100 Breast":
             scy_time = lcm_time * 0.866;
             break;
           case "200 Breast":
             scy_time = lcm_time * 0.868;
+            break;
+          case "50 Fly":
+            scy_time = lcm_time * 0.875;
             break;
           case "100 Fly":
             scy_time = lcm_time * 0.878;
@@ -81,6 +90,10 @@ function convert(value) {
             lcm_time = time / 0.877;
             badger_time = lcm_time / 1.11;
             break;
+          case "50 Back":
+            lcm_time = time / 0.852;
+            badger_time = lcm_time / 1.11;
+            break;
           case "100 Back":
             lcm_time = time / 0.855;
             badger_time = lcm_time / 1.11;
@@ -89,12 +102,20 @@ function convert(value) {
             lcm_time = time / 0.869;
             badger_time = lcm_time / 1.11;
             break;
+          case "50 Breast":
+            lcm_time = time / 0.863;
+            badger_time = lcm_time / 1.11;
+            break;
           case "100 Breast":
             lcm_time = time / 0.866;
             badger_time = lcm_time / 1.11;
             break;
           case "200 Breast":
             lcm_time = time / 0.868;
+            badger_time = lcm_time / 1.11;
+            break;
+          case "50 Fly":
+            lcm_time = time / 0.875;
             badger_time = lcm_time / 1.11;
             break;
           case "100 Fly":
@@ -131,17 +152,26 @@ function convert(value) {
           case "400 Free":
             scy_time = lcm_time * 0.877;
             break;
+          case "50 Back":
+            scy_time = lcm_time * 0.852;
+            break;
           case "100 Back":
             scy_time = lcm_time * 0.855;
             break;
           case "200 Back":
             scy_time = lcm_time * 0.869;
             break;
+          case "50 Breast":
+            scy_time = lcm_time * 0.863;
+            break;
           case "100 Breast":
             scy_time = lcm_time * 0.866;
             break;
           case "200 Breast":
             scy_time = lcm_time * 0.868;
+            break;
+          case "50 Fly":
+            scy_time = lcm_time * 0.875;
             break;
           case "100 Fly":
             scy_time = lcm_time * 0.878;
