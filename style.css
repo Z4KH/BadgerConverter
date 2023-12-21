@@ -4,6 +4,10 @@ body, h1, h2, p, textarea, button {
   padding: 0;
 }
 
+html {
+  background: linear-gradient(#FF5367, Navy);
+}
+
 #outer
 {
   width:100%;
@@ -15,8 +19,7 @@ body, h1, h2, p, textarea, button {
 }
 
 body {
-  font-family: "Lato", Arial, sans-serif;
-  background: linear-gradient(#FF5367, Navy); 
+  font-family: "Lato", Arial, sans-serif; 
 }
 
 .custom-selector {
@@ -51,8 +54,7 @@ body {
   height: 40px;
 }
 
-header {
-  background-color: #FF3C53; 
+header { 
   padding: 20px;
   text-align: center;
 }
@@ -65,7 +67,6 @@ main {
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #FFEEF0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
