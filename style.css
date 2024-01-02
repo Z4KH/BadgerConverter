@@ -5,7 +5,7 @@ body, h1, h2, p, textarea, button {
 }
 
 html {
-  background: linear-gradient(#FF5367, Navy);
+  background-color: #FF5367;
 }
 
 #outer
